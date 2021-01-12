@@ -9,6 +9,6 @@ use pest::Parser;
 pub struct CreoleParser;
 
 fn main() {
-    let successful_parse = CreoleParser::parse(Rule::word, "safddsa");
+    let successful_parse = CreoleParser::parse(Rule::paragraph, "sa**fdd**sa");
     println!("{:?}", successful_parse);
 }

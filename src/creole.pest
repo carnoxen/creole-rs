@@ -1,14 +1,16 @@
-document = { (block ~ "\n\n")* }
+document = { SOI ~ (block ~ "\n\n" | block ~ EOI)* }
 
 block =  { (paragraph) }
-paragraph = { (word | inline)* }
+paragraph = { (words | inline)* }
 
-inline = { (strong | em | code | ins | del | sup) }
-strong = { "**" ~ word* ~ "**" }
-em = { "//" ~ word* ~ "//" }
-code = { "``" ~ word* ~ "``" }
-ins = { "__" ~ word* ~ "__" }
-del = { "--" ~ word* ~ "--" }
-sup = { "^^" ~ word* ~ "^^" }
+inline = { (strong | em | code | ins | del | sup | sub) }
+strong = { "**" ~ (words | inline)* ~ "**" }
+em = { "//" ~ (words | inline)* ~ "//" }
+code = { "``" ~ (words | inline)* ~ "``" }
+ins = { "__" ~ (words | inline)* ~ "__" }
+del = { "--" ~ (words | inline)* ~ "--" }
+sup = { "^^" ~ (words | inline)* ~ "^^" }
+sub = { "~~" ~ (words | inline)* ~ "~~" }
 
+words = { word+ }
 word = { (ASCII_ALPHANUMERIC | " " | "," | "." | "!" | "?") }
