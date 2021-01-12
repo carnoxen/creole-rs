@@ -1,0 +1,14 @@
+document = { (block ~ "\n\n")* }
+
+block =  { (paragraph) }
+paragraph = { (word | inline)* }
+
+inline = { (strong | em | code | ins | del | sup) }
+strong = { "**" ~ word* ~ "**" }
+em = { "//" ~ word* ~ "//" }
+code = { "``" ~ word* ~ "``" }
+ins = { "__" ~ word* ~ "__" }
+del = { "--" ~ word* ~ "--" }
+sup = { "^^" ~ word* ~ "^^" }
+
+word = { (ASCII_ALPHANUMERIC | " " | "," | "." | "!" | "?") }
