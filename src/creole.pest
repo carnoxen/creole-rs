@@ -1,0 +1,16 @@
+document = { SOI ~ (block ~ "\n\n" | block ~ EOI)* }
+
+block =  { (paragraph) }
+paragraph = { (words | inline)* }
+
+inline = { (strong | em | code | ins | del | sup | sub) }
+strong = { "**" ~ (words | inline)* ~ "**" }
+em = { "//" ~ (words | inline)* ~ "//" }
+code = { "``" ~ (words | inline)* ~ "``" }
+ins = { "__" ~ (words | inline)* ~ "__" }
+del = { "--" ~ (words | inline)* ~ "--" }
+sup = { "^^" ~ (words | inline)* ~ "^^" }
+sub = { "~~" ~ (words | inline)* ~ "~~" }
+
+words = { word+ }
+word = { (ASCII_ALPHANUMERIC | " " | "," | "." | "!" | "?") }
